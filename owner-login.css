@@ -1,0 +1,1 @@
+#owner-dashboard[hidden],#owner-login[hidden]{display:none!important}#owner-dashboard{display:grid;gap:18px}.owner-login{max-width:440px;margin:8vh auto;padding:28px}.owner-login input{width:100%;box-sizing:border-box}.owner-login button{width:100%;margin-top:12px}#owner-login-result{min-height:1.5em;color:#ff8390}

@@ -8,6 +8,7 @@ async function body(req){const s=await req.text();if(s.length>20000)throw Error(
 const validId=x=>typeof x==='string'&&/^[a-f0-9-]{36}$/i.test(x);
 export async function community(req,env,json,isAdmin,origin,allowed){const p=new URL(req.url).pathname,m=req.method,D=env.DB;const first=async(s,...a)=>D.prepare(s).bind(...a).first();const all=async(s,...a)=>(await D.prepare(s).bind(...a).all()).results;const run=(s,...a)=>D.prepare(s).bind(...a).run();
 if(!p.startsWith('/hub/'))return null;
+if(p==='/hub/admin/login'&&m==='POST'){if(!await limit(req,env,p,10,300))return json({error:'Too many attempts. Try again later.'},429);return isAdmin()?json({ok:true}):json({error:'Unauthorized'},401);}
 if(p.startsWith('/hub/admin/')&&!isAdmin())return json({error:'Unauthorized'},401);
 if(m==='POST'&&!p.startsWith('/hub/admin/')&&origin!==allowed)return json({error:'Origin required'},403);
 if(p==='/hub/settings'&&m==='GET'){const r=await first('SELECT body FROM hub_settings WHERE id=1');return json(r?JSON.parse(r.body):{});}
