@@ -1,4 +1,4 @@
-name = "mtchedlo777-activity"
+name = "mchedlosprofile1"
 main = "worker.mjs"
 compatibility_date = "2026-01-01"
 
@@ -12,3 +12,7 @@ crons = ["*/30 * * * *"]
 binding = "DB"
 database_name = "mtchedlo777"
 database_id = "f594c1f5-ad2d-40ea-a9dd-00cc34ec4a49"
+
+[observability.logs]
+enabled = true
+invocation_logs = true
